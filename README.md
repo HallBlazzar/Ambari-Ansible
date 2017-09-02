@@ -1,4 +1,4 @@
-# This is ansible playbook for Apache Ambari. #
+# This is ansible playbook for Apache Ambari 2.5.2.0. #
 
 ## How to use ##
 
