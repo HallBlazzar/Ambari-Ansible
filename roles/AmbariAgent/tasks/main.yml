@@ -1,0 +1,24 @@
+- name: Download the Ambari repository file
+  get_url:
+    url: '{{ AmbariAgent_repo }}'
+    dest: /etc/apt/sources.list.d/ambari.list
+
+- name: Import key
+  apt_key:
+    keyserver: '{{ AmbariAgent_key_server }}'
+    id: '{{ AmbariAgent_key_id }}'
+
+- name: Install Ambari Agent
+  apt:
+    name: ambari-agent
+    update_cache: true
+
+- name: Set Ambari Agent configuration
+  template:
+    src: ambari-agent.ini.j2
+    dest: /etc/ambari-agent/conf/ambari-agent.ini
+
+- name: Start all agents
+  command: ambari-agent start
+  failed_when: ("'ambari-agent already running' not in result.stdout") == true and
+               ("'Ambari Agent successfully started' not in result.stdout") == true

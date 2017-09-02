@@ -1,0 +1,23 @@
+- name: Download the Ambari repository file
+  get_url:
+    url: '{{ AmbariServer_repo }}'
+    dest: /etc/apt/sources.list.d/ambari.list
+
+- name: Import key
+  apt_key:
+    keyserver: '{{ AmbariServer_key_server }}'
+    id: '{{ AmbariServer_key_id }}'
+
+- name: Install Ambari server
+  apt:
+    name: ambari-server
+    update_cache: true
+
+- name: Configure server with default option
+  command: ambari-server setup -s
+
+- name: Start Ambari server
+  command: ambari-server start
+  register: result
+  failed_when: ("'Ambari Server is already running.' not in result.stdout") == true and
+               ("'Ambari Server \'start\' completed successfully' not in result.stdout") == true

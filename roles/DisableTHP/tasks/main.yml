@@ -1,0 +1,7 @@
+- name: Install hugepages
+  apt:
+    name: hugepages
+    update_cache: yes
+
+- name: Disable THP
+  command: hugeadm --thp-never

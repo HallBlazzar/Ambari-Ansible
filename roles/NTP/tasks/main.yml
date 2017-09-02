@@ -1,0 +1,9 @@
+- name: Install NTP
+  apt:
+    name: ntp
+    update_cache: yes
+
+- name: Set NTP configuration
+  template:
+    src: ntp.conf.j2
+    dest: '{{ NTP_config }}'

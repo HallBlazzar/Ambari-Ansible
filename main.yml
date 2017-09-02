@@ -1,0 +1,53 @@
+- name: Prepare envrionment.
+  hosts: cluster
+  become: true
+
+  roles:
+    - role: OpenJDK
+
+    - role: NTP
+      NTP_servers:
+        - server 0.tw.pool.ntp.org
+        - server 1.tw.pool.ntp.org
+        - server 2.tw.pool.ntp.org
+        - server 3.tw.pool.ntp.org
+      NTP_fallback_server: server tw.pool.ntp.org
+
+    - role: DisableTHP
+
+  tasks:
+    - name: Set all inventory host's hostname
+      hostname:
+        name: "{{ inventory_hostname_short }}"
+
+    - name: Make all host know each other
+      template:
+        src: templates/hosts.j2
+        dest: /etc/hosts
+
+- name: Install Ambari server
+  hosts: "{{ Ambari_cluster_master }}"
+  become: true
+  vars_files:
+    - vars/Ambari.yml
+
+  roles:
+    - role: AmbariServer
+      AmbariServer_repo: "{{ Ambari_repo }}"
+      AmbariServer_key_server: "{{ Ambari_key_server}}"
+      AmbariServer_key_id: "{{ Ambari_key_id }}"
+
+
+- name: Install Ambari agents
+  hosts: cluster
+  become: true
+  vars_files:
+  - vars/Ambari.yml
+
+  roles:
+    - role: AmbariAgent
+      AmbariAgent_repo: "{{ Ambari_repo }}"
+      AmbariAgent_key_server: "{{ Ambari_key_server}}"
+      AmbariAgent_key_id: "{{ Ambari_key_id }}"
+
+      AmbariServer: "{{ Ambari_cluster_master }}"

@@ -1,0 +1,7 @@
+NTP_servers:
+  - pool 0.ubuntu.pool.ntp.org iburst
+  - pool 1.ubuntu.pool.ntp.org iburst
+  - pool 2.ubuntu.pool.ntp.org iburst
+  - pool 3.ubuntu.pool.ntp.org iburst
+
+NTP_fallback_server: pool ntp.ubuntu.com
