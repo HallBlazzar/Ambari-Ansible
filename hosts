@@ -1,9 +1,9 @@
 [cluster]
-master.localdomain ansible_ssh_host=192.168.20.10 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_ssh_pass=ubuntu
+master.localdomain ansible_ssh_host=192.168.20.10 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_ssh_pass=ubuntu connection_interface=ansible_enp0s8
 
-slave1.localdomain ansible_ssh_host=192.168.20.11 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_ssh_pass=ubuntu
-slave2.localdomain ansible_ssh_host=192.168.20.12 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_ssh_pass=ubuntu
-slave3.localdomain ansible_ssh_host=192.168.20.13 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_ssh_pass=ubuntu
+slave1.localdomain ansible_ssh_host=192.168.20.11 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_ssh_pass=ubuntu connection_interface=ansible_enp0s8
+slave2.localdomain ansible_ssh_host=192.168.20.12 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_ssh_pass=ubuntu connection_interface=ansible_enp0s8
+slave3.localdomain ansible_ssh_host=192.168.20.13 ansible_ssh_port=22 ansible_ssh_user=ubuntu ansible_ssh_pass=ubuntu connection_interface=ansible_enp0s8
 
 [cluster:vars]
 ansible_python_interpreter=/usr/bin/python2.7
