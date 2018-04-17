@@ -1,4 +1,4 @@
-AmbariAgent_repo: http://public-repo-1.hortonworks.com/ambari/ubuntu16/2.x/updates/2.5.0.3/ambari.list
+AmbariAgent_repo: http://public-repo-1.hortonworks.com/ambari/ubuntu16/2.x/updates/2.6.1.5/ambari.list
 AmbariAgent_key_server: keyserver.ubuntu.com
 AmbariAgent_key_id: 'B9733A7A07513CAD'
 

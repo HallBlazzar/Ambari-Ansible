@@ -1,4 +1,4 @@
-# This is ansible playbook for Apache Ambari 2.5.2.0. for Ubuntu Xenial. #
+# This is ansible playbook for Apache Ambari 2.6.1.5 for Ubuntu Xenial. #
 
 ## How to use ##
 
